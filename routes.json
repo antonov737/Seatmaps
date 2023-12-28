@@ -1,0 +1,50 @@
+[
+    {
+        "flight-number": "BA0001",
+        "origin": "LHR - London Heathrow",
+        "destination": "JFK - New York John F. Kennedy International",
+        "ac-type": ["CONC"]
+    },
+    {
+        "flight-number": "BA0002",
+        "origin": "LHR - London Heathrow",
+        "destination": "JFK - New York John F. Kennedy International",
+        "ac-type": ["CONC"]
+    },
+    {
+        "flight-number": "BA0005",
+        "origin": "LHR - London Heathrow",
+        "destination": "HND - Tokyo Haneda Interational",
+        "ac-type": ["B788", "B789", "B78X"]
+    },
+    {
+        "flight-number": "BA0006",
+        "origin": "HND - Tokyo Haneda International",
+        "destination": "LHR - London Heathrow",
+        "ac-type": ["B788", "B789", "B78X"]
+    },
+    {
+        "flight-number": "BA0137",
+        "origin": "LHR - London Heathrow",
+        "destination": "GIG - RioGaleao Tom Jobim International",
+        "ac-type": ["B788", "B789", "B77L"]
+    },
+    {
+        "flight-number": "BA0138",
+        "origin": "GIG - RioGaleao Tom Jobim International",
+        "destination": "LHR - London Heathrow",
+        "ac-type": ["B788", "B789", "B77L"]
+    },
+    {
+        "flight-number": "BA0235",
+        "origin": "LHR - London Heathrow",
+        "destination": "SVO - Moscow Sheremetyevo A.S. Pushkin International",
+        "ac-type": ["A321"]
+    },
+    {
+        "flight-number": "BA0234",
+        "origin": "SVO - Moscow Sheremetyevo A.S. Pushkin Intenational",
+        "destination": "LHR - London Heathrow",
+        "ac-type": ["A321"]
+    }
+]

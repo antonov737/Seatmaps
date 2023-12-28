@@ -1,4 +1,8 @@
 import Home from "./views/Home.js";
+import LocateNumber from "./views/LocateNumber.js";
+import Add from "./views/Add.js";
+import name from "./name.js";
+import LocateOrigDest from "./views/LocateOrigDest.js";
 
 const navigateTo = url => {
     history.pushState(null, null, url);
@@ -8,9 +12,9 @@ const navigateTo = url => {
 const router = async () => {
     const routes = [
         { path: "/", view: Home },
-        //{ path: "/about", view: () => console.log("Viewing About") },
-        //{ path: "/locate", view: () => console.log("Viewing Locate") },
-        //{ path: "/admin", view: () => console.log("Viewing Admin") }
+        { path: "/locate-flight-no", view: LocateNumber },
+        { path: "/locate-orig-dest", view: LocateOrigDest },
+        { path: "/add", view: Add }
     ];
 
     // Test each route for potential match
@@ -46,4 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     router();
+});
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.addEventListener("submit", e => {
+        if (e.target.matches("[name-form]")) {
+            e.preventDefault();
+            console.log(document.getElementById("name-input").value)
+            name.NameUpdater(document.getElementById("name-input").value)
+        }
+    });
 });
