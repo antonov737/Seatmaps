@@ -4,15 +4,23 @@
   "description": "Anton's COMP1101 Summative Assignment 1",
   "main": "src/server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "server": "nodemon backend/server.js",
+    "client": "nodemon frontend/server.js",
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "anton.a.egorov@durham.ac.uk",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.2",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.3"
   }
 }

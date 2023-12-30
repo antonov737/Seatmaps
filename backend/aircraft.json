@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Airbus A321",
+        "icao": "A321",
+        "seatmap": "https://www.britishairways.com/assets/images/MediaHub/Media-Database/Rights-managed-RM/Aircraft/Airbus-A321/airbus-A321-full-seatmap_800x2400.png"
+    },
+    {
+        "name": "Boeing 787-8 Dreamliner",
+        "icao": "B788",
+        "seatmap": "https://www.britishairways.com/assets/images/MediaHub/Media-Database/Rights-managed-RM/Aircraft/Boeing-787/boeing-787-8-full-seatmap_800x2000.png"
+    },
+    {
+        "name": "Boeing 787-9 Dreamliner",
+        "icao": "B789",
+        "seatmap": "https://www.britishairways.com/assets/images/MediaHub/Media-Database/Rights-managed-RM/Aircraft/Boeing-787/boeing-787-9-full-seatmap_800x2650.png"
+    },
+    {
+        "name": "Boeing 787-10 Dreamliner",
+        "icao": "B78X",
+        "seatmap": "https://www.britishairways.com/assets/images/MediaHub/Media-Database/Rights-managed-RM/Aircraft/Boeing-787/boeing-787-10-full-seatmap_800x3070.png"
+    },
+    {
+        "name": "Boeing 777-300ER",
+        "icao": "B77L",
+        "seatmap": "https://www.britishairways.com/assets/images/MediaHub/Media-Database/Rights-managed-RM/Aircraft/Boeing-777/boeing-777-300-full-seatmap_800x3040.png"
+    },
+    {
+        "name": "Airbus A318",
+        "icao": "A318",
+        "seatmap": "https://cdn.seatguru.com/en_US/img/20231129133323/seatguru/airlines_new/British_Airways/British_Airways_Airbus_A318_mobile.svg"
+    }
+]
