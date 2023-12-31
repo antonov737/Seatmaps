@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,16 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./font/bootstrap-icons.css">
     <script src="./js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* CSS to scale the image */
+        .scaled-image {
+          max-width: 100%; /* Scale down the image to fit within its container */
+          height: auto; /* Maintain the aspect ratio */
+        }
+    </style>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <div class="container">
@@ -33,7 +40,10 @@
                         <a href="/locate-flight-no" class="nav-link" data-link>Locate Aircraft</a>
                     </li>
                     <li class="nav-item active">
-                        <a href="/add" class="nav-link" data-link>Add Seatmaps</a>
+                        <a href="/add" class="nav-link" data-link>Add Route</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/edit" class="nav-link" data-link>Edit Route</a>
                     </li>
                 </ul>
             </div>
@@ -45,11 +55,13 @@
         </div>
     </div>
     <script type="module" src="/static/js/index.js"></script>
-
-    <div class="mt-5 p-4 bg-dark text-white text-center">
-        <p>Website created using BootStrap by Anton Egorov.</p>
-    <p>Should NOT be considered an up-to-date representation of British Airways fleet. All images from <a href="http://www.ba.com" class="link-primary">ba.com</a></p>
-    </div>
+    
+    <footer class="footer mt-auto">
+        <div class="mt-5 p-4 bg-dark text-white text-center">
+            <p>Website created using BootStrap by Anton Egorov.</p>
+            <p>Should NOT be considered an up-to-date representation of British Airways fleet. All images from <a href="http://www.ba.com" class="link-primary">ba.com</a></p>
+        </div>
+    </footer>
 
 </body>
 </html>

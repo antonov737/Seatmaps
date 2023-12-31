@@ -9,6 +9,9 @@
     "client": "nodemon frontend/server.js",
     "start": "concurrently \"npm run server\" \"npm run client\""
   },
+  "nodemonConfig" : {
+    "ignore": ["*.json"]
+  },
   "author": "anton.a.egorov@durham.ac.uk",
   "license": "ISC",
   "dependencies": {

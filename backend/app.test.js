@@ -37,4 +37,43 @@ describe('Test Flight API Service', () => {
             .get('/flights/PA235')
             .expect(404);
     })
+    test('GET /seatmap/B787 fails', () => {
+        return request(app)
+            .get('/seatmap/B787')
+            .expect(404);
+    })
+    test('GET /aircraft succeeds', () => {
+        return request(app)
+            .get('/aircraft')
+            .expect(200);
+    });
+    test('GET /aircraft/BA137 returns correct aircraft data', () => {
+        return request(app)
+            .get('/aircraft/BA137')
+            .expect(200)
+            .expect(res => {
+                const expectedAircraft = [
+                    { "icao": "B788", "name": "Boeing 787-8 Dreamliner" },
+                    { "icao": "B789", "name": "Boeing 787-9 Dreamliner" },
+                    { "icao": "B77L", "name": "Boeing 777-300ER" }
+                ];
+                const returnedAircraft = res.body;
+                const match = expectedAircraft.some(expected => {
+                    return returnedAircraft.some(returned => {
+                        return expected.icao === returned.icao && expected.name === returned.name;
+                    });
+                });
+    
+                expect(match).toBe(true);
+            });
+    });
+    test('GET /seatmap/A321 returns a valid seatmap URL', () => {
+        return request(app)
+            .get('/seatmap/A321')
+            .expect(200)
+            .expect(res => {
+                const isValidUrl = /^(http|https):\/\/[^ "]+$/.test(res.text);
+                expect(isValidUrl).toBe(true);
+            });
+    });
 });

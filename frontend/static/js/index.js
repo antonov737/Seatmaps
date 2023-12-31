@@ -4,6 +4,7 @@ import Add from "./views/Add.js";
 import PageUpdate from "./PageUpdate.js";
 import LocateOrigDest from "./views/LocateOrigDest.js";
 import { getFlights, getAircraft, getSeatMap, getAircraftName } from "./Get.js";
+import { addFlight } from "./Post.js";
 
 const navigateTo = url => {
     history.pushState(null, null, url);
@@ -51,44 +52,93 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (e.target.matches("[get-ac]")) {
             e.preventDefault();
             const FlightNo = e.target.id;
-            console.log(FlightNo);
-            const AircraftOperated = await getAircraft(FlightNo);
-            console.log(AircraftOperated);
-            PageUpdate.AircraftUpdater(AircraftOperated, FlightNo);
+            const { error, AircraftOperated } = await getAircraft(FlightNo);
+            if (error) {
+                if (error === 'Network error') {
+                    PageUpdate.NetworkErrorUpdater(error);
+                } else {
+                    PageUpdate.ErrorUpdater(error);
+                }
+            } else {
+                PageUpdate.AircraftUpdater(AircraftOperated, FlightNo);
+            }
         }
         else if (e.target.matches("[get-map]")) {
             e.preventDefault();
             const ICAO = e.target.id;
-            console.log(ICAO);
-            const SeatMapLink = await getSeatMap(ICAO);
-            PageUpdate.SeatMapUpdater(SeatMapLink, await getAircraftName(ICAO));
+            const { error_SeatMap, SeatMapLink } = await getSeatMap(ICAO);
+            if (error_SeatMap){
+                if (error_SeatMap === 'Network error') {
+                    PageUpdate.NetworkErrorUpdater(error_SeatMap);
+                } else {
+                    PageUpdate.ErrorUpdater(error_SeatMap);
+                }
+            } else {
+                const { error_acName, acName } = await getAircraftName(ICAO);
+                if (error_acName){
+                    if (error_acName === 'Network error') {
+                        PageUpdate.NetworkErrorUpdater(error_acName);
+                    } else {
+                        PageUpdate.ErrorUpdater(error_acName);
+                    }
+                } else {
+                    PageUpdate.SeatMapUpdater(SeatMapLink, acName);
+                }
+            }
         }
     });
-
     router();
 });
 document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("submit", async e => {
-        if (e.target.matches("[name-form]")) {
+        if (e.target.matches("[add-flight]")) {
             e.preventDefault();
-            console.log(document.getElementById("name-input").value);
-            PageUpdate.NameUpdater(document.getElementById("name-input").value);
+            const FlightNo = document.getElementById("flightNo").value
+            const originIATA = document.getElementById("origin-iata").value
+            const originName = document.getElementById("origin-name").value
+            const destIATA = document.getElementById("dest-iata").value
+            const destName = document.getElementById("dest-name").value
+            
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            function getCheckedCheckboxes() {
+                const checkboxes = dropdownMenu.querySelectorAll('.form-check-input');
+                const checkedValues = [];
+
+                checkboxes.forEach((checkbox) => {
+                    if (checkbox.checked) {
+                    checkedValues.push(checkbox.value);
+                    }
+                });
+
+                return checkedValues;
+            }
+            const acType = getCheckedCheckboxes();
+
+            const { inputError , postError, addedFlight } = await addFlight(FlightNo, originIATA, originName, destIATA, destName, acType);
+            if (addedFlight) {
+                PageUpdate.AddSuccessUpdater(addedFlight)
+            } else if (postError) {
+                PageUpdate.NetworkErrorUpdater()
+            } else if (inputError) {
+                PageUpdate.InputErrorUpdater(inputError)
+            }
+
         }
         else if (e.target.matches("[number-form]")) {
             e.preventDefault();
             const FlightNo = document.getElementById("flight-no-input").value;
-            console.log("Sending request to server to fetch " + FlightNo);
             const { error, flights } = await getFlights(FlightNo);
-            console.log(flights);
             if (error){
                 if (error === 'Network error') {
-                    PageUpdate.NetworkErrorUpdater(error)
+                    PageUpdate.NetworkErrorUpdater(error);
                 } else {
-                    PageUpdate.ErrorUpdater(error)
+                    PageUpdate.ErrorUpdater(error);
                 }
             } else {
-                PageUpdate.FlightUpdater(flights)
+                PageUpdate.FlightUpdater(flights);
             }
         }
     });
+    router();
 });

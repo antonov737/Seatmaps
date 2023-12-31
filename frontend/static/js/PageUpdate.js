@@ -27,8 +27,21 @@ export default class {
     static SeatMapUpdater (SeatMapLink, AircraftName) {
         const div = document.getElementById("app");
         div.innerHTML = `
-            <h1>Showing seat map for ${AircraftName}</h1>
-            <img src="${SeatMapLink}" alt="${AircraftName}">
+            <div class="text-center">
+                <h1>Showing seat map for ${AircraftName}</h1>
+                <img src="${SeatMapLink}" alt="${AircraftName}" class="scaled-image">
+            </div>
+        `
+    }
+    static AddSuccessUpdater (flight) {
+        const div = document.getElementById("app");
+        div.innerHTML = `
+        <div class="alert alert-success mt-2">
+            <strong>Success!</strong> Flight added. Details below.
+        </div>
+        <p>Flight Number: ${flight.flightNo}</p>
+        <p>Origin: ${flight.origin}</p>
+        <p>Destination: ${flight.destination}</p>
         `
     }
     static ErrorUpdater (error) {
@@ -38,6 +51,14 @@ export default class {
             <strong>Error!</strong> ${error}
         </div>
       `;
+    }
+    static InputErrorUpdater (error) {
+        const div = document.getElementById("input-errors");
+        div.innerHTML = `
+        <div class="alert alert-danger mt-2">
+            <strong>Error!</strong> ${error}
+        </div>
+        `
     }
     static NetworkErrorUpdater () {
         const div = document.getElementById("app");
