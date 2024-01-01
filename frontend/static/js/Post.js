@@ -10,6 +10,9 @@ export async function addFlight (flightNo, originIATA, originName, destIATA, des
     } else if (!IATARegex.test(destIATA)) {
         let errorMessage = 'Invalid destination IATA format';
         return { inputError: errorMessage, postError: null, addedFlight: null };
+    } else if (acType.length === 0) {
+        let errorMessage = 'Please Select Aircraft';
+        return { inputError: errorMessage, postError: null, addedFlight: null };
     }
     const origin = originIATA + " - " + originName;
     const dest = destIATA + " - " + destName;
