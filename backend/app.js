@@ -92,7 +92,7 @@ app.post("/addflight", (req, res) => {
     console.log('Recieved data: ', { flightNo, origin, destination, acType });
     flights.push({ flightNo, origin, destination, acType })
     const data = JSON.stringify(flights, null, 4);
-    fs.writeFileSync('backend/flights.json', data, {"flush" : "True"}, (error) => {
+    fs.writeFileSync('backend/flights.json', data, { "flush" : "True" }, (error) => {
         if (error) {
             console.error(error);
             throw error;
@@ -100,6 +100,25 @@ app.post("/addflight", (req, res) => {
     });
     console.log('Written successfully');
     res.send({ flightNo, origin, destination, acType })
+})
+
+app.post("/editflight", (req, res) => {
+    const { flightNo, acType } = req.body;
+    console.log('Recieved data ', { flightNo, acType });
+    for (let i = 0; i < flights.length; i++) {
+        if (flightNo === flights[i].flightNo) {
+            flights[i].acType = acType;
+        }
+    }
+    const data = JSON.stringify(flights, null, 4);
+    fs.writeFileSync('backend/flights.json', data, { "flush" : "True" }, (error) => {
+        if (error) {
+            console.error(error);
+            throw error;
+        }
+    });
+    console.log("Written successfully");
+    res.send({ flightNo, acType });
 })
 
 module.exports = app;

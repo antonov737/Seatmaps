@@ -16,6 +16,7 @@ export default class extends AbstractView {
             <input id="flight-no-input" type="text" placeholder="Enter Flight Number" required>
             <input type="submit"></input>
         </form>
+        <div id='input-errors'></div>
         <div id='flight-buttons' class="btn-group-vertical"></div>
         `
     }

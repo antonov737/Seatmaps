@@ -4,7 +4,7 @@
         "origin": "LHR - London Heathrow",
         "destination": "JFK - New York John F. Kennedy International",
         "acType": [
-            "A318"
+            "A321"
         ]
     },
     {
@@ -20,8 +20,6 @@
         "origin": "LHR - London Heathrow",
         "destination": "HND - Tokyo Haneda Interational",
         "acType": [
-            "B788",
-            "B789",
             "B78X"
         ]
     },
@@ -50,9 +48,7 @@
         "origin": "GIG - RioGaleao Tom Jobim International",
         "destination": "LHR - London Heathrow",
         "acType": [
-            "B788",
-            "B789",
-            "B77L"
+            "A318"
         ]
     },
     {
@@ -60,7 +56,8 @@
         "origin": "LHR - London Heathrow",
         "destination": "SVO - Moscow Sheremetyevo A.S. Pushkin International",
         "acType": [
-            "A321"
+            "B788",
+            "B789"
         ]
     },
     {
@@ -68,7 +65,8 @@
         "origin": "SVO - Moscow Sheremetyevo A.S. Pushkin Intenational",
         "destination": "LHR - London Heathrow",
         "acType": [
-            "A321"
+            "B788",
+            "B789"
         ]
     },
     {
@@ -94,6 +92,46 @@
         "acType": [
             "B78X",
             "B77L"
+        ]
+    },
+    {
+        "flightNo": "BA7",
+        "origin": "LHR - London Heathrow",
+        "destination": "HND - Haneda",
+        "acType": [
+            "A321",
+            "B788",
+            "B789"
+        ]
+    },
+    {
+        "flightNo": "BA47",
+        "origin": "LHR - LHR",
+        "destination": "LHR - LHR",
+        "acType": [
+            "A318",
+            "A321",
+            "B788",
+            "B789",
+            "B78X",
+            "B77L"
+        ]
+    },
+    {
+        "flightNo": "BA7",
+        "origin": "LHR - London Heathrow",
+        "destination": "HND - London Heathrow",
+        "acType": [
+            "B78X"
+        ]
+    },
+    {
+        "flightNo": "BA2222",
+        "origin": "LHR - London Heathrow",
+        "destination": "HND - Haneda",
+        "acType": [
+            "B789",
+            "B78X"
         ]
     }
 ]

@@ -5,19 +5,19 @@ export async function getFlights (FlightNo) {
         if (!response.ok) {
             let errorMessage = '';
             if (response.status === 404) {
-                errorMessage = 'Not found - 404 error'
+                errorMessage = 'Not found - 404'
             } else if (response.status === 500) {
-                errorMessage = 'Internal Server Error - 500 error'
+                errorMessage = 'Internal Server Error - 500'
             } else {
                 errorMessage = 'Unhandled error: ' + response.status
             }
-            return { error: errorMessage, flights: null}
+            return { error: errorMessage, Flights: null}
         }
         const data = await response.json()
-        return { error: null, flights : data }
+        return { error: null, Flights : data }
     } catch (error) {
         console.error('Error fetching flights: ', error);
-        return { error: 'Network error', flights: null };
+        return { error: 'Network error', Flights: null };
     }
 }
 export async function getAircraft (FlightNo) {
@@ -77,12 +77,12 @@ export async function getAircraftName(ICAO) {
             } else {
                 errorMessage = 'Unhandled error: ' + response.status
             }
-            return { error: errorMessage, acName: null}
+            return { error: errorMessage, AircraftName: null}
         }
         const data = await response.text()
-        return { error: null, acName : data }
+        return { error: null, AircraftName : data }
     } catch (error) {
         console.error('Error fetching flights: ', error);
-        return { error: 'Network error', acName: null };
+        return { error: 'Network error', AircraftName: null };
     }
 }
