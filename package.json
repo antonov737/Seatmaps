@@ -4,6 +4,7 @@
   "description": "Anton's COMP1101 Summative Assignment 1",
   "main": "src/server.js",
   "scripts": {
+    "pretest": "eslint backend/*.js && eslint frontend/static/js/*.js && frontend/static/js/views/*.js",
     "test": "jest",
     "server": "nodemon backend/server.js",
     "client": "nodemon frontend/server.js",

@@ -1,12 +1,12 @@
-import AbstractView from "./AbstractView.js";
+import AbstractView from './AbstractView.js';
 
 export default class extends AbstractView {
-    constructor() {
+    constructor () {
         super();
-        this.setTitle("Locate Seatmap");
+        this.setTitle('Locate Seatmap');
     }
 
-    async getHtml() {
+    async getHtml () {
         return `
         <h1>This is the Locator Page</h1>
         <p>Add forms for both flight number search and destination search</p>
@@ -18,6 +18,6 @@ export default class extends AbstractView {
         </form>
         <div id='input-errors'></div>
         <div id='flight-buttons' class="btn-group-vertical"></div>
-        `
+        `;
     }
 }

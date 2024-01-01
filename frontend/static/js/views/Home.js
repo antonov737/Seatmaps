@@ -1,12 +1,12 @@
-import AbstractView from "./AbstractView.js";
+import AbstractView from './AbstractView.js';
 
 export default class extends AbstractView {
-    constructor() {
+    constructor () {
         super();
-        this.setTitle("BA Seatmaps");
+        this.setTitle('BA Seatmaps');
     }
 
-    async getHtml() {
+    async getHtml () {
         return `
             <h1>Welcome to the unofficial British Airways seat map tool</h1>
             <h4 class="fst-italic">The bespoke tool for all BA flyers out there!</h4>

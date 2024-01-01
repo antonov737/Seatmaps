@@ -1,12 +1,12 @@
-import AbstractView from "./AbstractView.js";
+import AbstractView from './AbstractView.js';
 
 export default class extends AbstractView {
-    constructor() {
+    constructor () {
         super();
-        this.setTitle("Locate Seatmap by Origin/Destination");
+        this.setTitle('Locate Seatmap by Origin/Destination');
     }
 
-    async getHtml() {
+    async getHtml () {
         return `
             <h1>The following is the locate by Origin/Destination page</h1>
         `;

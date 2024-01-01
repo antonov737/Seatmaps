@@ -1,12 +1,12 @@
-import AbstractView from "./AbstractView.js";
+import AbstractView from './AbstractView.js';
 
 export default class extends AbstractView {
-    constructor() {
+    constructor () {
         super();
-        this.setTitle("Edit Route Aircraft");
+        this.setTitle('Edit Route Aircraft');
     }
 
-    async getHtml() {
+    async getHtml () {
         return `
             <h1>Edit aircraft operating route</h1>
             <div id='input-errors'></div>
@@ -19,6 +19,6 @@ export default class extends AbstractView {
             </form>
             <div id='input-errors'></div>
             <div id='flight-buttons' class="btn-group-vertical"></div>
-        `
+        `;
     }
 }

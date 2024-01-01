@@ -1,13 +1,14 @@
 export default class {
-    constructor() {
+    // eslint-disable-next-line no-useless-constructor
+    constructor () {
 
     }
 
-    setTitle(title) {
+    setTitle (title) {
         document.title = title;
     }
 
-    async getHtml() {
-        return "";
+    async getHtml () {
+        return '';
     }
 }
