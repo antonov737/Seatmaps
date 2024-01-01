@@ -1,5 +1,5 @@
+/* eslint-disable no-useless-constructor */
 export default class {
-    // eslint-disable-next-line no-useless-constructor
     constructor () {
 
     }
