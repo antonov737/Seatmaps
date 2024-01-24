@@ -23,7 +23,7 @@ export async function addFlight (flightNo, originIATA, originName, destIATA, des
         acType
     };
     try {
-        const response = await fetch('http://192.168.0.80:8060/addflight', {
+        const response = await fetch('http://127.0.0.1:8060/addflight', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -33,8 +33,8 @@ export async function addFlight (flightNo, originIATA, originName, destIATA, des
         const dataRecieve = await response.json();
         if (!response.ok) {
             let errorMessage = '';
-            if (response.status === 404) {
-                errorMessage = 'Not Found - 404';
+            if (response.status === 400) {
+                errorMessage = 'Bad Request - 404 - ' + dataRecieve.error;
             } else if (response.status === 500) {
                 errorMessage = 'Intenal Server Error - 500';
             } else {
@@ -58,7 +58,7 @@ export async function editFlight (flightNo, acType) {
         acType
     };
     try {
-        const response = await fetch('http://192.168.0.80:8060/editflight', {
+        const response = await fetch('http://127.0.0.1:8060/editflight', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -68,8 +68,8 @@ export async function editFlight (flightNo, acType) {
         const dataRecieve = await response.json();
         if (!response.ok) {
             let errorMessage = '';
-            if (response.status === 404) {
-                errorMessage = 'Not Found - 404';
+            if (response.status === 400) {
+                errorMessage = 'Bad Request - 400 - ' + dataRecieve.error;
             } else if (response.status === 500) {
                 errorMessage = 'Intenal Server Error - 500';
             } else {
@@ -81,5 +81,39 @@ export async function editFlight (flightNo, acType) {
     } catch (postError) {
         console.error('Error adding flights: ', postError);
         return { inputError: null, postError: 'Network error', EditedFlight: null };
+    }
+}
+export async function getFlightsByAirport (origin, destination) {
+    const dataSend = {
+        origin,
+        destination
+    };
+    try {
+        const response = await fetch('http://127.0.0.1:8060/flights-orig-dest', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(dataSend)
+            });
+            const dataRecieve = await response.json();
+            console.log(dataRecieve);
+            if (!response.ok) {
+                let errorMessage = '';
+                if (response.status === 404) {
+                    errorMessage = 'Not Found - 404 - ' + dataRecieve.error;
+                } else if (response.status === 400) {
+                    errorMessage = 'Bad Request - 400 - ' + dataRecieve.error;
+                } else if (response.status === 500) {
+                    errorMessage = 'Intenal Server Error - 500';
+                } else {
+                    errorMessage = 'Unhandled error: ' + response.status;
+                }
+                return { postError: errorMessage, Flights: null };
+            }
+            return { postError: null, Flights: dataRecieve };
+    } catch (postError) {
+        console.error('Error adding flights: ', postError);
+        return { postError: 'Network error', Flights: null };
     }
 }

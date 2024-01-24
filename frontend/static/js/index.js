@@ -5,7 +5,7 @@ import Edit from './views/Edit.js';
 import PageUpdate from './PageUpdate.js';
 import LocateOrigDest from './views/LocateOrigDest.js';
 import { getFlights, getAircraft, getSeatMap, getAircraftName } from './Get.js';
-import { addFlight, editFlight } from './Post.js';
+import { addFlight, editFlight, getFlightsByAirport } from './Post.js';
 
 const navigateTo = url => {
     history.pushState(null, null, url);
@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else {
                 PageUpdate.EditPromptUpdater(AircraftOperated, FlightNo);
+                sessionStorage.setItem('flightNo', FlightNo);
             }
         } else if (e.target.matches('[get-map]')) {
             e.preventDefault();
@@ -156,6 +157,20 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 PageUpdate.FlightUpdater(Flights);
             }
+        } else if (e.target.matches('[number-orig-dest-form]')) {
+            e.preventDefault();
+            const origin = document.getElementById('origin-input').value;
+            const destination = document.getElementById('dest-input').value;
+            const { postError, Flights } = await getFlightsByAirport(origin, destination);
+            if (Flights) {
+                PageUpdate.FlightUpdater(Flights);
+            } else if (postError) {
+                if (postError === 'Network error') {
+                    PageUpdate.NetworkErrorUpdater();
+                } else {
+                    PageUpdate.ErrorUpdater(postError);
+                }
+            }
         } else if (e.target.matches('[number-edit-form]')) {
             e.preventDefault();
             const FlightNo = document.getElementById('flight-no-input').value;
@@ -187,12 +202,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return checkedValues;
             }
             const acType = getCheckedCheckboxes();
-            const FlightNo = document.getElementById('submit-edit').value;
+            const FlightNo = sessionStorage.getItem('flightNo');
             console.log(acType);
             console.log(FlightNo);
             const { inputError, postError, EditedFlight } = await editFlight(FlightNo, acType);
             if (EditedFlight) {
-                PageUpdate.AddSuccessUpdater(EditedFlight);
+                PageUpdate.EditSuccessUpdater(EditedFlight);
             } else if (postError) {
                 if (postError === 'Network error') {
                     PageUpdate.NetworkErrorUpdater();

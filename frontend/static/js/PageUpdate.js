@@ -89,7 +89,7 @@ export default class {
                         </div>
                     </div>
                 </div>
-                <input type="submit" id="submit-edit" value="${FlightNo}" class="btn btn-primary"></input>
+                <input type="submit" id="submit-edit" class="btn btn-primary"></input>
             </form>
         `;
         const para = document.getElementById('current-ac');
@@ -108,7 +108,13 @@ export default class {
         <p>Flight Number: ${flight.flightNo}</p>
         <p>Origin: ${flight.origin}</p>
         <p>Destination: ${flight.destination}</p>
+        <p id="current-ac">Aircraft: </p>
         `;
+        const para = document.getElementById('current-ac');
+        para.innerHTML += `${flight.acType[0]}`;
+        for (let i = 1; i < flight.acType.length; i++) {
+            para.innerHTML += `, ${flight.acType[i]}`;
+        }
     }
 
     static ErrorUpdater (error) {
@@ -125,8 +131,26 @@ export default class {
         div.innerHTML = `
         <div class="alert alert-danger mt-2">
             <strong>Error!</strong> Network Error.
-            <button href="/" type="button" class="btn btn-primary mt-1" data-link>Exit to Home Page</button>
+        </div>
+        <div class="text-center">
+            <button href="/" type="button" class="btn btn-danger mt-1" data-link>Try Again</button>
         </div>
       `;
+    }
+
+    static EditSuccessUpdater (flight) {
+        const div = document.getElementById('app');
+        div.innerHTML = `
+        <div class="alert alert-success mt-2">
+            <strong>Success!</strong> Flight edited. Details below.
+        </div>
+        <p>Flight Number: ${flight.flightNo}</p>
+        <p id="current-ac">Aircraft: </p>
+        `;
+        const para = document.getElementById('current-ac');
+        para.innerHTML += `${flight.acType[0]}`;
+        for (let i = 1; i < flight.acType.length; i++) {
+            para.innerHTML += `, ${flight.acType[i]}`;
+        }
     }
 }

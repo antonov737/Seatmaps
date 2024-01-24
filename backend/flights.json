@@ -12,25 +12,7 @@
         "origin": "LHR - London Heathrow",
         "destination": "JFK - New York John F. Kennedy International",
         "acType": [
-            "A318"
-        ]
-    },
-    {
-        "flightNo": "BA5",
-        "origin": "LHR - London Heathrow",
-        "destination": "HND - Tokyo Haneda Interational",
-        "acType": [
-            "B78X"
-        ]
-    },
-    {
-        "flightNo": "BA6",
-        "origin": "HND - Tokyo Haneda International",
-        "destination": "LHR - London Heathrow",
-        "acType": [
-            "B788",
-            "B789",
-            "B78X"
+            "B77L"
         ]
     },
     {
@@ -38,8 +20,6 @@
         "origin": "LHR - London Heathrow",
         "destination": "GIG - RioGaleao Tom Jobim International",
         "acType": [
-            "B788",
-            "B789",
             "B77L"
         ]
     },
@@ -70,26 +50,30 @@
         ]
     },
     {
-        "flightNo": "BA9999",
+        "flightNo": "BA7",
         "origin": "LHR - London Heathrow",
-        "destination": "NCL - Newcastle",
-        "acType": [
-            "A321"
-        ]
-    },
-    {
-        "flightNo": "BA47",
-        "origin": "NCL - Newcastle International",
         "destination": "HND - Haneda",
         "acType": [
-            "B78X"
+            "B788",
+            "B789",
+            "B78X",
+            "B77L"
         ]
     },
     {
-        "flightNo": "BA88",
-        "origin": "LHR - London Heathrow",
-        "destination": "PEK - Peking",
+        "flightNo": "BA7",
+        "origin": "LHR - Newcastle International",
+        "destination": "LHR - erb",
         "acType": [
+            "B77L"
+        ]
+    },
+    {
+        "flightNo": "BA7",
+        "origin": "LHR - London Heathrow",
+        "destination": "HND - Haneda",
+        "acType": [
+            "B789",
             "B78X",
             "B77L"
         ]
@@ -99,19 +83,15 @@
         "origin": "LHR - London Heathrow",
         "destination": "HND - Haneda",
         "acType": [
-            "A321",
             "B788",
             "B789"
         ]
     },
     {
-        "flightNo": "BA47",
-        "origin": "LHR - LHR",
-        "destination": "LHR - LHR",
+        "flightNo": "BA7",
+        "origin": "LHR - London Heathrow",
+        "destination": "HND - erb",
         "acType": [
-            "A318",
-            "A321",
-            "B788",
             "B789",
             "B78X",
             "B77L"
@@ -120,18 +100,45 @@
     {
         "flightNo": "BA7",
         "origin": "LHR - London Heathrow",
-        "destination": "HND - London Heathrow",
+        "destination": "HND - Newcastle",
         "acType": [
-            "B78X"
+            "B789",
+            "B78X",
+            "B77L"
         ]
     },
     {
-        "flightNo": "BA2222",
+        "flightNo": "BA9",
         "origin": "LHR - London Heathrow",
-        "destination": "HND - Haneda",
+        "destination": "LAX - Los Angeles",
         "acType": [
-            "B789",
-            "B78X"
+            "A318",
+            "A321"
+        ]
+    },
+    {
+        "flightNo": "BA11",
+        "origin": "LHR - London Heathrow",
+        "destination": "LAX - Los Angeles",
+        "acType": [
+            "A318"
+        ]
+    },
+    {
+        "flightNo": "BA15",
+        "origin": "LHR - London Heathrow",
+        "destination": "SAN - San Diego International",
+        "acType": [
+            "B78X",
+            "B77L"
+        ]
+    },
+    {
+        "flightNo": "BA17",
+        "origin": "LHR - London Heathrow",
+        "destination": "SEA - Seattle Tacoma International",
+        "acType": [
+            "A318"
         ]
     }
 ]

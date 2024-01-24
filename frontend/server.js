@@ -18,6 +18,11 @@ app.use(
     express.static(path.join(__dirname, '../node_modules/bootstrap/dist/js'))
 );
 
+app.use(
+    '/img',
+    express.static(path.join(__dirname, './img'))
+);
+
 app.use('/static', express.static(path.resolve(__dirname, 'static')));
 
 app.get('/*', (req, res) => {

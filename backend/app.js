@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const express = require('express');
 const fs = require('fs');
 
@@ -6,7 +5,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-    origin: 'http://192.168.0.80:8090'
+    origin: 'http://127.0.0.1:8090'
 }));
 
 app.use(express.json());
@@ -39,6 +38,7 @@ app.get('/aircraft', (req, res) => {
 
 app.get('/aircraft/:flightNo', (req, res) => {
     const FlightNo = req.params.flightNo;
+    let ICAOFound = [];
     console.log('Finding aircraft operating flight: ' + FlightNo);
     for (let i = 0; i < flights.length; i++) {
         if (flights[i].flightNo === FlightNo) {
@@ -55,6 +55,9 @@ app.get('/aircraft/:flightNo', (req, res) => {
                 });
             }
         }
+    }
+    if (AircraftToReturn.length === 0) {
+        res.status(404);
     }
     res.send(AircraftToReturn);
 });
@@ -87,38 +90,86 @@ app.get('/name/:icao', (req, res) => {
     }
 });
 
+app.post('/flights-orig-dest', (req, res) => {
+    try {
+        const { origin, destination } = req.body;
+        console.log('Recieved data: ', { origin, destination });
+        const matches = [];
+        for (let i = 0; i < flights.length; i++) {
+            if (flights[i].origin.toUpperCase().includes(origin.toUpperCase()) && flights[i].destination.toUpperCase().includes(destination.toUpperCase())) {
+                matches.push(flights[i]);
+            };
+        };
+        if (matches.length === 0) {
+            res.status(404).send({
+                error: 'No matches for queried origin/destination'
+            });
+        } else {
+            res.send(matches);
+        };
+    } catch {
+        res.status(400).send({
+            error: 'Incorrect arguments passed!'
+        });
+    }
+});
+
 app.post('/addflight', (req, res) => {
-    const { flightNo, origin, destination, acType } = req.body;
-    console.log('Recieved data: ', { flightNo, origin, destination, acType });
-    flights.push({ flightNo, origin, destination, acType });
-    const data = JSON.stringify(flights, null, 4);
-    fs.writeFileSync('backend/flights.json', data, { flush: 'True' }, (error) => {
-        if (error) {
-            console.error(error);
-            throw error;
+    try {
+        const { flightNo, origin, destination, acType } = req.body;
+        console.log('Recieved data: ', { flightNo, origin, destination, acType });
+        if (flightNo && origin && destination && acType) {
+            flights.push({ flightNo, origin, destination, acType });
+            const data = JSON.stringify(flights, null, 4);
+            fs.writeFileSync('backend/flights.json', data, { flush: 'True' }, (error) => {
+                if (error) { // status 500
+                    console.error(error);
+                    throw error;
+                }
+            });
+            console.log('Written successfully');
+            res.send({ flightNo, origin, destination, acType }); // status 200
+        } else {
+            throw new Error();
         }
-    });
-    console.log('Written successfully');
-    res.send({ flightNo, origin, destination, acType });
+    } catch { // status 400
+        res.status(400).send({
+            error: 'Incorrect arguments passed!'
+        });
+    }
 });
 
 app.post('/editflight', (req, res) => {
-    const { flightNo, acType } = req.body;
-    console.log('Recieved data ', { flightNo, acType });
-    for (let i = 0; i < flights.length; i++) {
-        if (flightNo === flights[i].flightNo) {
-            flights[i].acType = acType;
+    try {
+        const { flightNo, acType } = req.body;
+        let Found = 0;
+        console.log('Recieved data ', { flightNo, acType });
+        for (let i = 0; i < flights.length; i++) {
+            if (flightNo === flights[i].flightNo) {
+                flights[i].acType = acType;
+                Found = 1;
+            }
         }
+        if (Found === 1) {
+            const data = JSON.stringify(flights, null, 4);
+            fs.writeFileSync('backend/flights.json', data, { flush: 'True' }, (error) => {
+                if (error) {
+                    console.error(error); // 500 error
+                    throw error;
+                }
+            });
+            console.log('Written successfully');
+            res.send({ flightNo, acType });
+        } else {
+            res.status(404).send({
+                error: 'Flight Number not found'
+            });
+        }
+    } catch {
+        res.status(400).send({
+            error: 'Incorrect arguments passed!'
+        });
     }
-    const data = JSON.stringify(flights, null, 4);
-    fs.writeFileSync('backend/flights.json', data, { flush: 'True' }, (error) => {
-        if (error) {
-            console.error(error);
-            throw error;
-        }
-    });
-    console.log('Written successfully');
-    res.send({ flightNo, acType });
 });
 
 module.exports = app;

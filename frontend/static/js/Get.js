@@ -1,7 +1,7 @@
 export async function getFlights (FlightNo) {
     try {
         const endpoint = FlightNo;
-        const response = await fetch('http://192.168.0.80:8060/flights/' + endpoint);
+        const response = await fetch('http://127.0.0.1:8060/flights/' + endpoint);
         if (!response.ok) {
             let errorMessage = '';
             if (response.status === 404) {
@@ -23,7 +23,7 @@ export async function getFlights (FlightNo) {
 export async function getAircraft (FlightNo) {
     try {
         const endpoint = FlightNo;
-        const response = await fetch('http://192.168.0.80:8060/aircraft/' + endpoint);
+        const response = await fetch('http://127.0.0.1:8060/aircraft/' + endpoint);
         if (!response.ok) {
             let errorMessage = '';
             if (response.status === 404) {
@@ -45,7 +45,7 @@ export async function getAircraft (FlightNo) {
 export async function getSeatMap (ICAO) {
     try {
         const endpoint = ICAO;
-        const response = await fetch('http://192.168.0.80:8060/seatmap/' + endpoint);
+        const response = await fetch('http://127.0.0.1:8060/seatmap/' + endpoint);
         if (!response.ok) {
             let errorMessage = '';
             if (response.status === 404) {
@@ -67,7 +67,7 @@ export async function getSeatMap (ICAO) {
 export async function getAircraftName (ICAO) {
     try {
         const endpoint = ICAO;
-        const response = await fetch('http://192.168.0.80:8060/name/' + endpoint);
+        const response = await fetch('http://127.0.0.1:8060/name/' + endpoint);
         if (!response.ok) {
             let errorMessage = '';
             if (response.status === 404) {
