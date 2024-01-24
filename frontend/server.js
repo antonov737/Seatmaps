@@ -1,3 +1,4 @@
+// Frontend server serving html, css, bootstrap 5, additional media
 const express = require('express');
 const path = require('path');
 

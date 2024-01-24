@@ -1,10 +1,6 @@
+// This file performs DOM manipulation
 export default class {
-    static NameUpdater (name) {
-        const div = document.getElementById('app');
-        div.innerHTML += `<h1>${name}</h1>`;
-    }
-
-    static FlightUpdater (flights) {
+    static FlightUpdater (flights) { // Appends buttons of searched flights to Locate screen
         const div = document.getElementById('flight-buttons');
         div.innerHTML = '';
         for (let i = 0; i < flights.length; i++) {
@@ -15,7 +11,7 @@ export default class {
         };
     }
 
-    static FlightUpdater_edit (flights) {
+    static FlightUpdater_edit (flights) { // Appends buttons of searched flights to Edit screen
         const div = document.getElementById('flight-buttons');
         div.innerHTML = '';
         for (let i = 0; i < flights.length; i++) {
@@ -26,7 +22,7 @@ export default class {
         };
     }
 
-    static AircraftUpdater (aircraft, FlightNo) {
+    static AircraftUpdater (aircraft, FlightNo) { // Shows buttons of aircraft operated by particular flight
         const div = document.getElementById('app');
         div.innerHTML = `
             <h1>Aircraft operating ${FlightNo}</h1>
@@ -38,7 +34,7 @@ export default class {
         };
     }
 
-    static SeatMapUpdater (SeatMapLink, AircraftName) {
+    static SeatMapUpdater (SeatMapLink, AircraftName) { // Shows image of seatmap for a selected aircraft
         const div = document.getElementById('app');
         div.innerHTML = `
             <div class="text-center">
@@ -48,7 +44,7 @@ export default class {
         `;
     }
 
-    static EditPromptUpdater (AircraftOperated, FlightNo) {
+    static EditPromptUpdater (AircraftOperated, FlightNo) { // Shows prompt for editing flights
         const div = document.getElementById('app');
         div.innerHTML = `
             <div id="input-errors"></div>
@@ -56,7 +52,7 @@ export default class {
             <h3>Aircraft currently operating:</h3>
             <p id="current-ac"></p>
             <h3>Select updated aircraft types for this route:</h3>
-            <form id="edit-ac" edit-flight>
+            <form id="edit-flight">
                 <div class="mb-3 dropdown">
                     <label class="form-label" for="dropdownMenuButton">Aircraft Type:</label>
                     <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -99,7 +95,7 @@ export default class {
         }
     }
 
-    static AddSuccessUpdater (flight) {
+    static AddSuccessUpdater (flight) { // Shows alert window indicating successful flight add
         const div = document.getElementById('app');
         div.innerHTML = `
         <div class="alert alert-success mt-2">
@@ -117,7 +113,7 @@ export default class {
         }
     }
 
-    static ErrorUpdater (error) {
+    static ErrorUpdater (error) { // Shows alert indicating a particular error
         const div = document.getElementById('input-errors');
         div.innerHTML = `
         <div class="alert alert-danger mt-2">
@@ -126,7 +122,7 @@ export default class {
       `;
     }
 
-    static NetworkErrorUpdater () {
+    static NetworkErrorUpdater () { // Shows alert indicating network error
         const div = document.getElementById('app');
         div.innerHTML = `
         <div class="alert alert-danger mt-2">
@@ -138,7 +134,7 @@ export default class {
       `;
     }
 
-    static EditSuccessUpdater (flight) {
+    static EditSuccessUpdater (flight) { // Shows alert window indicating successful flight edit
         const div = document.getElementById('app');
         div.innerHTML = `
         <div class="alert alert-success mt-2">

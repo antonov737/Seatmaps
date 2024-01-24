@@ -1,8 +1,9 @@
+// This file calls all GET requests
 export async function getFlights (FlightNo) {
     try {
         const endpoint = FlightNo;
-        const response = await fetch('http://127.0.0.1:8060/flights/' + endpoint);
-        if (!response.ok) {
+        const response = await fetch('http://127.0.0.1:8060/flights/' + endpoint); // fetching via API
+        if (!response.ok) { // error handling
             let errorMessage = '';
             if (response.status === 404) {
                 errorMessage = 'Not found - 404';
@@ -14,8 +15,8 @@ export async function getFlights (FlightNo) {
             return { error: errorMessage, Flights: null };
         }
         const data = await response.json();
-        return { error: null, Flights: data };
-    } catch (error) {
+        return { error: null, Flights: data }; // returning fetched data
+    } catch (error) { // network error
         console.error('Error fetching flights: ', error);
         return { error: 'Network error', Flights: null };
     }
@@ -23,8 +24,8 @@ export async function getFlights (FlightNo) {
 export async function getAircraft (FlightNo) {
     try {
         const endpoint = FlightNo;
-        const response = await fetch('http://127.0.0.1:8060/aircraft/' + endpoint);
-        if (!response.ok) {
+        const response = await fetch('http://127.0.0.1:8060/aircraft/' + endpoint); // fetching via API
+        if (!response.ok) { // error handling
             let errorMessage = '';
             if (response.status === 404) {
                 errorMessage = 'Not found - 404 error';
@@ -36,8 +37,8 @@ export async function getAircraft (FlightNo) {
             return { error: errorMessage, AircraftOperated: null };
         }
     const data = await response.json();
-    return { error: null, AircraftOperated: data };
-    } catch (error) {
+    return { error: null, AircraftOperated: data }; // returning fetched data
+    } catch (error) { // network error
         console.error('Error fetching flights: ', error);
         return { error: 'Network error', AircraftOperated: null };
     }
@@ -45,8 +46,8 @@ export async function getAircraft (FlightNo) {
 export async function getSeatMap (ICAO) {
     try {
         const endpoint = ICAO;
-        const response = await fetch('http://127.0.0.1:8060/seatmap/' + endpoint);
-        if (!response.ok) {
+        const response = await fetch('http://127.0.0.1:8060/seatmap/' + endpoint); // fetching via API
+        if (!response.ok) { // error handling
             let errorMessage = '';
             if (response.status === 404) {
                 errorMessage = 'Not found - 404 error';
@@ -58,8 +59,8 @@ export async function getSeatMap (ICAO) {
             return { error: errorMessage, SeatMapLink: null };
         }
         const data = await response.text();
-        return { error: null, SeatMapLink: data };
-    } catch (error) {
+        return { error: null, SeatMapLink: data }; // returning fetched data
+    } catch (error) { // network error
         console.error('Error fetching flights: ', error);
         return { error: 'Network error', SeatMapLink: null };
     }
@@ -67,8 +68,8 @@ export async function getSeatMap (ICAO) {
 export async function getAircraftName (ICAO) {
     try {
         const endpoint = ICAO;
-        const response = await fetch('http://127.0.0.1:8060/name/' + endpoint);
-        if (!response.ok) {
+        const response = await fetch('http://127.0.0.1:8060/name/' + endpoint); // fetching via API
+        if (!response.ok) { // error handling
             let errorMessage = '';
             if (response.status === 404) {
                 errorMessage = 'Not found - 404 error';
@@ -80,8 +81,8 @@ export async function getAircraftName (ICAO) {
             return { error: errorMessage, AircraftName: null };
         }
         const data = await response.text();
-        return { error: null, AircraftName: data };
-    } catch (error) {
+        return { error: null, AircraftName: data }; // returning fetched data
+    } catch (error) { // network error
         console.error('Error fetching flights: ', error);
         return { error: 'Network error', AircraftName: null };
     }

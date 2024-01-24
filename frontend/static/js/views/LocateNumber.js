@@ -6,12 +6,13 @@ export default class extends AbstractView {
         this.setTitle('Locate Seatmap');
     }
 
+    // HTML for /locate-flight-no
     async getHtml () {
         return `
         <h1>This is the Locator Page</h1>
         <p>Find the flight number on your British Airways booking and enter it here.</p>
         <p>Having trouble finding flight number? <a href="/locate-orig-dest" data-link>Search by Destination/Origin</a></p>
-        <form id="name" number-form>
+        <form id="number-form">
                 <div class="mb-3 mt-3">
                     <label class="form-label" for="flight-no-input">Flight Number (starts with BA):</label>
                     <input class="form-control" id="flight-no-input" type="text" placeholder="Example: BA1" required>

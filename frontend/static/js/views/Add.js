@@ -6,11 +6,12 @@ export default class extends AbstractView {
         this.setTitle('Add Route');
     }
 
+    // HTML for /add
     async getHtml () {
         return `
             <h1>Add new flight</h1>
             <div id='input-errors'></div>
-            <form id="name" add-flight>
+            <form id="add-flight">
                 <div class="mb-3 mt-3">
                     <label class="form-label" for="flightNo">Flight Number (starts with BA):</label>
                     <input class="form-control" id="flightNo" placeholder="Example: BA1" required>

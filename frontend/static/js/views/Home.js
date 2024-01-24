@@ -6,6 +6,7 @@ export default class extends AbstractView {
         this.setTitle('BA Seatmaps');
     }
 
+    // HTML for landing page
     async getHtml () {
         return `
             <h1>Welcome to the unofficial British Airways seat map tool</h1>
