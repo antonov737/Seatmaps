@@ -121,7 +121,7 @@ app.post('/addflight', (req, res) => {
         if (flightNo && origin && destination && acType) {
             flights.push({ flightNo, origin, destination, acType });
             const data = JSON.stringify(flights, null, 4);
-            fs.writeFileSync('backend/flights.json', data, { flush: 'True' }, (error) => {
+            fs.writeFileSync('backend/flights.json', data, (error) => {
                 if (error) { // status 500
                     console.error(error);
                     throw error;
@@ -152,7 +152,7 @@ app.post('/editflight', (req, res) => {
         }
         if (Found === 1) {
             const data = JSON.stringify(flights, null, 4);
-            fs.writeFileSync('backend/flights.json', data, { flush: 'True' }, (error) => {
+            fs.writeFileSync('backend/flights.json', data, (error) => {
                 if (error) {
                     console.error(error); // 500 error
                     throw error;
