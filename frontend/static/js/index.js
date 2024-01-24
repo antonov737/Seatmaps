@@ -203,8 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const acType = getCheckedCheckboxes();
             const FlightNo = sessionStorage.getItem('flightNo');
-            console.log(acType);
-            console.log(FlightNo);
             const { inputError, postError, EditedFlight } = await editFlight(FlightNo, acType);
             if (EditedFlight) { // success
                 PageUpdate.EditSuccessUpdater(EditedFlight);

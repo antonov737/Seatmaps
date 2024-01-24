@@ -104,7 +104,6 @@ export async function getFlightsByAirport (origin, destination) {
                 body: JSON.stringify(dataSend)
             });
             const dataRecieve = await response.json();
-            console.log(dataRecieve);
             if (!response.ok) { // error handling
                 let errorMessage = '';
                 if (response.status === 404) {
