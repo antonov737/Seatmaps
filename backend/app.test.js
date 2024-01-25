@@ -212,7 +212,7 @@ describe('Test SeatMap API Service', () => {
     });
     test('POST /addflight with correct arguments succeeds', () => {
         const params = {
-            flightNo: 'BA7890',
+            flightNo: 'TEST7890',
             origin: 'Test Airport 1',
             destination: 'Test Airport 2',
             acType: ['A318', 'A321']
@@ -224,7 +224,7 @@ describe('Test SeatMap API Service', () => {
     });
     test('POST /addflight with correct arguments returns JSON', () => {
         const params = {
-            flightNo: 'BA7890',
+            flightNo: 'TEST7890',
             origin: 'Test Airport 1',
             destination: 'Test Airport 2',
             acType: ['A318', 'A321']
@@ -236,7 +236,7 @@ describe('Test SeatMap API Service', () => {
     });
     test('POST /addflight with insufficient arguments fails', () => {
         const params = {
-            flightNo: 'BA7890',
+            flightNo: 'TEST7890',
             origin: 'Test Airport 1',
             destination: 'Test Airport 2'
         };
@@ -247,7 +247,7 @@ describe('Test SeatMap API Service', () => {
     });
     test('POST /addflight with insufficient arguments returns JSON', () => {
         const params = {
-            flightNo: 'BA7890',
+            flightNo: 'TEST7890',
             origin: 'Test Airport 1',
             destination: 'Test Airport 2'
         };
@@ -258,7 +258,7 @@ describe('Test SeatMap API Service', () => {
     });
     test('POST /addflight with invalid arguments fails', () => {
         const params = {
-            flightno: 'BA7890',
+            flightno: 'TEST7890',
             orig: 'Test Airport 1',
             dest: 'Test Airport 2',
             ac: ['A318', 'A321']
@@ -270,7 +270,7 @@ describe('Test SeatMap API Service', () => {
     });
     test('POST /addflight with invalid arguments returns JSON', () => {
         const params = {
-            flightno: 'BA7890',
+            flightno: 'TEST7890',
             orig: 'Test Airport 1',
             dest: 'Test Airport 2',
             ac: ['A318', 'A321']
@@ -282,7 +282,7 @@ describe('Test SeatMap API Service', () => {
     });
     test('POST /editflight with correct arguments succeeds', () => {
         const params = {
-            flightNo: 'BA7890',
+            flightNo: 'TEST7890',
             acType: ['B78X']
         };
         return request(app)
@@ -292,7 +292,7 @@ describe('Test SeatMap API Service', () => {
     });
     test('POST /editflight with correct arguments returns JSON', () => {
         const params = {
-            flightNo: 'BA7890',
+            flightNo: 'TEST7890',
             acType: ['B78X']
         };
         return request(app)
