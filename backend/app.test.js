@@ -124,7 +124,7 @@ describe('Test SeatMap API Service', () => {
     test('POST /flights-orig-dest succeeds with correct inputs', () => {
         const params = {
             origin: 'LHR',
-            destination: 'HND'
+            destination: 'SVO'
         };
         return request(app)
             .post('/flights-orig-dest')
@@ -134,7 +134,7 @@ describe('Test SeatMap API Service', () => {
     test('POST /flights-orig-dest succeeds with correct inputs but variable case', () => {
         const params = {
             origin: 'LhR',
-            destination: 'HNd'
+            destination: 'SVo'
         };
         return request(app)
             .post('/flights-orig-dest')
